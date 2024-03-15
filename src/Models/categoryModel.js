@@ -7,19 +7,11 @@ const CategorySchema = new mongoose.Schema(
       type: String,
     },
 
-    Photos: {
-      type: String,
-    },
    
     Name: {
       type: String,
     },
-    slugName: {
-      type: String,
-    },
-    Link: {
-      type: String,
-    },
+   
     Active: {
       type: Boolean,
       default: false,

@@ -3,9 +3,8 @@ const aws = require("aws-sdk");
 const { v4: uuidv4 } = require("uuid");
 const BlogData = async (req, res) => {
   try {
+   
     const {
-      _id,
-    
       Photos,
       Name,
       slug,
@@ -17,39 +16,44 @@ const BlogData = async (req, res) => {
       Detail,
       Active,
     } = req.body;
-    const id = uuidv4();
-    const newData = await BlogModel.findOneAndUpdate(
-      { id },
-      {
-        _id,
-        Photos,
-        Name,
-        slug,
-        Tag,
-        Date,
-        MetaTitle,
-        MetaKey,
-        MetaDescription,
-        Detail,
-        Active,
-      },
-      {
-        new: true,
-        upsert: true,
-      }
-    );
 
+    
+    const id = uuidv4();
+
+    
+    const newBlog = new BlogModel({
+      id, 
+      Photos,
+      Name,
+      slug,
+      Tag,
+      Date,
+      MetaTitle,
+      MetaKey,
+      MetaDescription,
+      Detail,
+      Active,
+    });
+
+   
+    const savedBlog = await newBlog.save();
+
+    
     return res.status(201).send({
       status: true,
-      msg: "Data created or updated successfully",
-      data: newData,
+      msg: "Blog post created successfully",
+      data: savedBlog,
     });
   } catch (err) {
-    return res
-      .status(500)
-      .send({ status: false, msg: "Server error", error: err.message });
+   
+    return res.status(500).send({
+      status: false,
+      msg: "Server error",
+      error: err.message,
+    });
   }
 };
+
 
 
 
@@ -137,7 +141,16 @@ const getById = async (req, res) => {
 
 const updateData = async (req, res) => {
   try {
-    const { Active } = req.body;
+    const { Active,   Photos,
+      Name,
+      slug,
+      Tag,
+      Date,
+      MetaTitle,
+      MetaKey,
+      MetaDescription,
+      Detail,
+       } = req.body;
 
     let blogId = req.params.blogId;
 
@@ -151,6 +164,15 @@ const updateData = async (req, res) => {
       {
         $set: {
           Active: Active,
+          Photos:Photos,
+          Name:Name,
+          slug:slug,
+          Tag:Tag,
+          Date:Date,
+          MetaTitle:MetaTitle,
+          MetaKey:MetaKey,
+          MetaDescription:MetaDescription,
+          Detail:Detail,
         },
       },
       { new: true }
