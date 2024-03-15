@@ -3,7 +3,7 @@ const aws = require("aws-sdk");
 const { v4: uuidv4 } = require("uuid");
 const BlogData = async (req, res) => {
   try {
-   
+
     const {
       Photos,
       Name,
@@ -17,12 +17,12 @@ const BlogData = async (req, res) => {
       Active,
     } = req.body;
 
-    
+
     const id = uuidv4();
 
-    
+
     const newBlog = new BlogModel({
-      id, 
+      id,
       Photos,
       Name,
       slug,
@@ -35,17 +35,17 @@ const BlogData = async (req, res) => {
       Active,
     });
 
-   
+
     const savedBlog = await newBlog.save();
 
-    
+
     return res.status(201).send({
       status: true,
       msg: "Blog post created successfully",
       data: savedBlog,
     });
   } catch (err) {
-   
+
     return res.status(500).send({
       status: false,
       msg: "Server error",
@@ -127,7 +127,7 @@ const getData = async (req, res) => {
   }
 };
 
-const getById = async (req, res) => {
+const getByblogId = async (req, res) => {
   const blogId = req.params.blogId;
 
   const BlogData = await BlogModel.findOne({
@@ -141,7 +141,7 @@ const getById = async (req, res) => {
 
 const updateData = async (req, res) => {
   try {
-    const { Active,   Photos,
+    const { Active, Photos,
       Name,
       slug,
       Tag,
@@ -150,7 +150,7 @@ const updateData = async (req, res) => {
       MetaKey,
       MetaDescription,
       Detail,
-       } = req.body;
+    } = req.body;
 
     let blogId = req.params.blogId;
 
@@ -158,21 +158,21 @@ const updateData = async (req, res) => {
       Active,
       id: { $ne: blogId },
     });
-    console.log("existingUnit",blogId)
+    console.log("existingUnit", blogId)
     let updateBody = await BlogModel.findOneAndUpdate(
       { id: blogId },
       {
         $set: {
           Active: Active,
-          Photos:Photos,
-          Name:Name,
-          slug:slug,
-          Tag:Tag,
-          Date:Date,
-          MetaTitle:MetaTitle,
-          MetaKey:MetaKey,
-          MetaDescription:MetaDescription,
-          Detail:Detail,
+          Photos: Photos,
+          Name: Name,
+          slug: slug,
+          Tag: Tag,
+          Date: Date,
+          MetaTitle: MetaTitle,
+          MetaKey: MetaKey,
+          MetaDescription: MetaDescription,
+          Detail: Detail,
         },
       },
       { new: true }
@@ -206,7 +206,7 @@ const DeleteById = async (req, res) => {
   try {
     let blogId = req.params.blogId;
 
-   
+
     const deletionResult = await BlogModel.deleteOne({ id: blogId });
 
     if (deletionResult.deletedCount === 0) {
@@ -222,7 +222,7 @@ const DeleteById = async (req, res) => {
 module.exports = {
   BlogData,
   getData,
-  getById,
+  getByblogId,
   updateData,
   Deletedata,
   DeleteById,

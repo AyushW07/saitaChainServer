@@ -8,7 +8,7 @@ const { createUser, userLogin, getusersData } = require('../Controllers/loginCon
 const {
   BlogData,
   getData,
-  getById,
+  getByblogId,
   updateData,
   Deletedata,
   DeleteById,
@@ -35,7 +35,7 @@ router.get("/V1/getuser", getusersData);
 router.post("/V1/createBlogData", BlogData);
 router.post("/V1/uploadImg", saveImage);
 router.get("/V1/getBlogData", getData);
-router.get("/V1/getByblogId/:blogId", getById);
+router.get("/V1/getByblogId/:blogId", getByblogId);
 router.put("/V1/updateBlogData/:blogId", updateData);
 router.delete("/V1/deleteBlogData", Deletedata);
 router.delete("/V1/deleteId/:blogId", DeleteById);
