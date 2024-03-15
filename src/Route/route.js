@@ -4,7 +4,7 @@ const multer = require("multer");
 // const Middleware = require("../middleware/authorization");
 const storage = multer.memoryStorage(); // using memory storage for simplicity
 const upload = multer({ storage: storage });
-const{createUser,userLogin,getusersData} = require('../Controllers/loginController')
+const { createUser, userLogin, getusersData } = require('../Controllers/loginController')
 const {
   BlogData,
   getData,
@@ -35,8 +35,8 @@ router.get("/V1/getuser", getusersData);
 router.post("/V1/createBlogData", BlogData);
 router.post("/V1/uploadImg", saveImage);
 router.get("/V1/getBlogData", getData);
-router.get("/V1/getById/:blogId", getById);
-router.put("/V1/updateBlogData/:blogId", upload.single("Photo"), updateData);
+router.get("/V1/getByblogId/:blogId", getById);
+router.put("/V1/updateBlogData/:blogId", updateData);
 router.delete("/V1/deleteBlogData", Deletedata);
 router.delete("/V1/deleteId/:blogId", DeleteById);
 
@@ -44,8 +44,8 @@ router.delete("/V1/deleteId/:blogId", DeleteById);
 
 router.post("/V1/createcategoryData", CategoryData);
 router.get("/V1/getcategoryData", getCategoryData);
-router.put("/V1/updatecategoryData/:categoryId", upload.single("Photo"), updateCategoryData);
+router.put("/V1/updatecategoryData/:categoryId", updateCategoryData);
 router.delete("/V1/deletecategoryData", DeleteCategorydata);
-router.get("/V1/getById/:categoryId", getBycategoryId);
+router.get("/V1/getBycatagoryId/:categoryId", getBycategoryId);
 router.delete("/V1/deletecategory/:categoryId", DeleteBycategoryId);
 module.exports = router;
