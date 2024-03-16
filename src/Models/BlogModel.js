@@ -19,7 +19,7 @@ const BlogSchema = new mongoose.Schema(
       type: String,
     },
     Date: {
-      type:String,
+      type: String,
     },
     MetaTitle: {
       type: String,
@@ -33,12 +33,12 @@ const BlogSchema = new mongoose.Schema(
     Detail: {
       type: String,
     },
-  
+
     Active: {
       type: Boolean,
       default: false,
     },
-   
+
     isDeleted: {
       type: Boolean,
       default: false,

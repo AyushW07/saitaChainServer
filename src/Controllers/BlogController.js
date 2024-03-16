@@ -79,7 +79,7 @@ const saveImage = async (req, res) => {
   console.log("s", saveImage);
 
   const file = req.files[0];
-  console.log("first error", file);
+  // console.log("first error", file);
   const fileNameParts = file.originalname.split(".");
   const fileExtension = fileNameParts[fileNameParts.length - 1];
   const fileMimeType = file.mimetype;
@@ -100,7 +100,7 @@ const saveImage = async (req, res) => {
   s3Client
     .send(uploadCommand)
     .then((response) => {
-      console.log("r", response);
+      // console.log("r", response);
       let imageId = response.$metadata.requestId;
       let awsImageUrl = `https://saitarealty.s3.us-east-2.amazonaws.com/${uuid}`;
 
@@ -158,7 +158,7 @@ const updateData = async (req, res) => {
       Active,
       id: { $ne: blogId },
     });
-    console.log("existingUnit", blogId)
+    // console.log("existingUnit", blogId)
     let updateBody = await BlogModel.findOneAndUpdate(
       { id: blogId },
       {

@@ -44,8 +44,8 @@ router.delete("/V1/deleteId/:blogId", DeleteById);
 
 router.post("/V1/createcategoryData", CategoryData);
 router.get("/V1/getcategoryData", getCategoryData);
-router.put("/V1/updatecategoryData/:categoryId", updateCategoryData);
+router.put("/V1/updatecategoryData/:categoryId", upload.single("Photo"), updateCategoryData);
 router.delete("/V1/deletecategoryData", DeleteCategorydata);
-router.get("/V1/getBycatagoryId/:categoryId", getBycategoryId);
+router.get("/V1/getBycategoryId/:categoryId", getBycategoryId);
 router.delete("/V1/deletecategory/:categoryId", DeleteBycategoryId);
 module.exports = router;
