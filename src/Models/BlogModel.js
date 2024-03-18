@@ -16,7 +16,7 @@ const BlogSchema = new mongoose.Schema(
       type: String,
     },
     Tag: {
-      type: String,
+      type: [],
     },
     Date: {
       type: String,
