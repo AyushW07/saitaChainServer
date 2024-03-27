@@ -23,6 +23,13 @@ const {
   DeleteCategorydata,
   DeleteBycategoryId
 } = require("../Controllers/categoryController");
+
+const {
+  userformData,
+  getuserformData,
+  updateuserformData,
+  DeleteuserformData
+} = require("../Controllers/userformController");
 const middelware = require("../middleware/authorization");
 //**********************************user*******************************//
 //login
@@ -47,4 +54,18 @@ router.put("/V1/updatecategoryData/:categoryId", middelware, updateCategoryData)
 router.delete("/V1/deletecategoryData", DeleteCategorydata);
 router.get("/V1/getBycategoryId/:categoryId", getBycategoryId);
 router.delete("/V1/deletecategory/:categoryId", DeleteBycategoryId);
+
+
+//userHome
+
+router.post("/V1/userformcreate", userformData);
+router.get("/V1/getformData", getuserformData);
+router.put(
+  "/V1/updateData/:homeId",
+  upload.single("Photo"),
+  updateuserformData
+);
+router.delete("/V1/deleteData", DeleteuserformData);
+
 module.exports = router;
+
