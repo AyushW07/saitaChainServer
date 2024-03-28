@@ -30,6 +30,13 @@ const {
   updateuserformData,
   DeleteuserformData
 } = require("../Controllers/userformController");
+
+const {
+  userhomeData,
+  getuserhomeData,
+  updateuserhomeData,
+  DeleteuserhomeData,
+} = require("../Controllers/userformsController")
 const middelware = require("../middleware/authorization");
 //**********************************user*******************************//
 //login
@@ -56,7 +63,7 @@ router.get("/V1/getBycategoryId/:categoryId", getBycategoryId);
 router.delete("/V1/deletecategory/:categoryId", DeleteBycategoryId);
 
 
-//userHome
+//userForm
 
 router.post("/V1/userformcreate", userformData);
 router.get("/V1/getformData", getuserformData);
@@ -66,6 +73,17 @@ router.put(
   updateuserformData
 );
 router.delete("/V1/deleteData", DeleteuserformData);
+
+
+//userHome
+router.post("/V1/userhomeformcreate", userhomeData);
+router.get("/V1/gethomeformData", getuserhomeData);
+router.put(
+  "/V1/updatehomeData/:homeId",
+  upload.single("Photo"),
+  updateuserhomeData
+);
+router.delete("/V1/deletehomeData", DeleteuserhomeData);
 
 module.exports = router;
 

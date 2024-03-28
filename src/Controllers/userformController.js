@@ -6,10 +6,6 @@ const userformData = async (req, res) => {
   try {
     const { _id, Name, LastName, Email, Subject, Message } = req.body;
     console.log(req.body);
-    const admissions = await userFormModel.findOne({ isDeleted: false });
-    if (!admissions?.Email) {
-      return res.status(400).send({ status: false, msg: "Recipient email not found!" });
-    }
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -21,7 +17,7 @@ const userformData = async (req, res) => {
 
     const mailOptions = {
       from: "noreply@saitachain.com",
-      to: admissions.Email,
+      to: "noreply@saitachain.com",
       subject: "Submission for saitaChain.com",
       text: `
         Name: ${Name}
