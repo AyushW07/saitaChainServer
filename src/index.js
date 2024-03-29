@@ -6,30 +6,9 @@ const { Route } = require("express");
 const cors = require("cors");
 const app = express();
 const multer = require("multer");
-const helmet = require("helmet");
 app.use(multer().any());
 // Enable All CORS Requests for development use
 app.use(cors());
-app.use(helmet());
-app.use((req, res, next) => {
-  // Strict-Transport-Security
-  res.setHeader('Strict-Transport-Security', 'max-age=86400; includeSubDomains');
-  // X-Content-Type-Options
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  // X-Frame-Options
-  res.setHeader('X-Frame-Options', 'DENY');
-  // X-XSS-Protection
-  res.setHeader('X-XSS-Protection', '1; mode=block');
-  // Content-Security-Policy
-  // Be cautious with CSP; tailor it to your app's needs
-  res.setHeader('Content-Security-Policy', "default-src 'self';");
-  // Permissions-Policy
-  // Adjust according to the features your site uses
-  res.setHeader('Permissions-Policy', 'geolocation=(self), microphone=()');
-
-  next();
-});
-
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
