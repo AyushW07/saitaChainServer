@@ -11,31 +11,22 @@ app.use(multer().any());
 // Enable All CORS Requests for development use
 app.use(cors());
 app.use(helmet());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      // Add other directives as needed
-    },
-  })
-);
-
-// Referrer Policy
-app.use(helmet.referrerPolicy({ policy: "no-referrer" }));
-
-// Setting Strict-Transport-Security header
-app.use(helmet.hsts({
-  maxAge: 31536000, // 1 year in seconds
-  includeSubDomains: true, // Apply HSTS policy to all subdomains
-  preload: true
-}));
-
-app.use(helmet.frameguard({
-  action: 'sameorigin'
-}));
-
 app.use((req, res, next) => {
+  // Strict-Transport-Security
+  res.setHeader('Strict-Transport-Security', 'max-age=86400; includeSubDomains');
+  // X-Content-Type-Options
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  // X-Frame-Options
+  res.setHeader('X-Frame-Options', 'DENY');
+  // X-XSS-Protection
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  // Content-Security-Policy
+  // Be cautious with CSP; tailor it to your app's needs
+  res.setHeader('Content-Security-Policy', "default-src 'self';");
+  // Permissions-Policy
+  // Adjust according to the features your site uses
   res.setHeader('Permissions-Policy', 'geolocation=(self), microphone=()');
+
   next();
 });
 
