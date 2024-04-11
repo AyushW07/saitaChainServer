@@ -65,31 +65,31 @@ router.post("/V1/createcategoryData", currentUser, auth(ClientRoles.PALNESTO_ADM
 router.get("/V1/getcategoryData", getCategoryData);
 router.put("/V1/updatecategoryData/:categoryId", currentUser, auth(ClientRoles.PALNESTO_ADMIN), updateCategoryData);
 router.delete("/V1/deletecategoryData", DeleteCategorydata);
-router.get("/V1/getBycategoryId/:categoryId", currentUser, auth(ClientRoles.PALNESTO_ADMIN), getBycategoryId);
-router.delete("/V1/deletecategory/:categoryId", DeleteBycategoryId);
+router.get("/V1/getBycategoryId/:categoryId", getBycategoryId);
+router.delete("/V1/deletecategory/:categoryId", currentUser, auth(ClientRoles.PALNESTO_ADMIN), DeleteBycategoryId);
 
 
 //userForm
 
-router.post("/V1/userformcreate", userformData);
+router.post("/V1/userformcreate", currentUser, auth(ClientRoles.PALNESTO_ADMIN), userformData);
 router.get("/V1/getformData", getuserformData);
 router.put(
   "/V1/updateData/:homeId",
-  upload.single("Photo"),
+  currentUser, auth(ClientRoles.PALNESTO_ADMIN),
   updateuserformData
 );
-router.delete("/V1/deleteData", DeleteuserformData);
+router.delete("/V1/deleteData", currentUser, auth(ClientRoles.PALNESTO_ADMIN), DeleteuserformData);
 
 
 //userHome
-router.post("/V1/userhomeformcreate", userhomeData);
+router.post("/V1/userhomeformcreate", currentUser, auth(ClientRoles.PALNESTO_ADMIN), userhomeData);
 router.get("/V1/gethomeformData", getuserhomeData);
 router.put(
   "/V1/updatehomeData/:homeId",
-  upload.single("Photo"),
+  currentUser, auth(ClientRoles.PALNESTO_ADMIN),
   updateuserhomeData
 );
-router.delete("/V1/deletehomeData", DeleteuserhomeData);
+router.delete("/V1/deletehomeData", currentUser, auth(ClientRoles.PALNESTO_ADMIN), DeleteuserhomeData);
 
 module.exports = router;
 
