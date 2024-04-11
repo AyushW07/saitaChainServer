@@ -6,15 +6,39 @@ const { Route } = require("express");
 const cors = require("cors");
 const app = express();
 const multer = require("multer");
+const cookieSession = require("cookie-session");
 app.use(multer().any());
 // Enable All CORS Requests for development use
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://saitachain.com",
+      "https://saitachain.com:3000",
+
+
+    ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization", "Origin", "Cookie"],
+  })
+);
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.use(
+  cookieSession({
+    signed: false,
 
+    secure: true,
+
+
+    sameSite: "none",
+  })
+);
 mongoose
   .connect(
-    "mongodb+srv://vxr73978:H60fu05Yl1so2OiS@cluster0.edp22fy.mongodb.net/Saitachain",
+    process.env.MONGO_URL,
     {
       useNewUrlParser: true,
     }

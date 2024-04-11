@@ -12,6 +12,7 @@ const {
   Deletedata,
   DeleteById,
   saveImage,
+  DeleteByNameData
 } = require("../Controllers/BlogController");
 
 
@@ -37,7 +38,11 @@ const {
   updateuserhomeData,
   DeleteuserhomeData,
 } = require("../Controllers/userformsController")
-const middelware = require("../middleware/authorization");
+const { ClientRoles } = require("../clientRole")
+// const authMidd = require("../middleware/authorization")
+const middleware = require("../middleware/authorization");
+const currentUser = require("../middleware/currentUser");
+const auth = require("../middleware/auth")
 //**********************************user*******************************//
 //login
 router.post("/V1/createUser", createUser);
@@ -45,21 +50,22 @@ router.post("/V1/Loginuser", userLogin);
 router.get("/V1/getuser", getusersData);
 
 //Blog//
-router.post("/V1/createBlogData", middelware, BlogData);
+router.post("/V1/createBlogData", currentUser, auth(ClientRoles.PALNESTO_ADMIN), BlogData);
 router.post("/V1/uploadImg", saveImage);
 router.get("/V1/getBlogData", getData);
 router.get("/V1/getByblogId/:blogId", getByblogId);
-router.put("/V1/updateBlogData/:blogId", middelware, updateData);
+router.put("/V1/updateBlogData/:blogId", currentUser, auth(ClientRoles.PALNESTO_ADMIN), updateData);
 router.delete("/V1/deleteBlogData", Deletedata);
-router.delete("/V1/deleteId/:blogId", DeleteById);
+router.delete("/V1/deleteId/:blogId", currentUser, auth(ClientRoles.PALNESTO_ADMIN), DeleteById);
+router.delete("/V1/deleteByName", DeleteByNameData);
 
 //Category
 
-router.post("/V1/createcategoryData", middelware, CategoryData);
+router.post("/V1/createcategoryData", currentUser, auth(ClientRoles.PALNESTO_ADMIN), CategoryData);
 router.get("/V1/getcategoryData", getCategoryData);
-router.put("/V1/updatecategoryData/:categoryId", middelware, updateCategoryData);
+router.put("/V1/updatecategoryData/:categoryId", currentUser, auth(ClientRoles.PALNESTO_ADMIN), updateCategoryData);
 router.delete("/V1/deletecategoryData", DeleteCategorydata);
-router.get("/V1/getBycategoryId/:categoryId", getBycategoryId);
+router.get("/V1/getBycategoryId/:categoryId", currentUser, auth(ClientRoles.PALNESTO_ADMIN), getBycategoryId);
 router.delete("/V1/deletecategory/:categoryId", DeleteBycategoryId);
 
 

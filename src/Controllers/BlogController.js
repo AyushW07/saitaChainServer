@@ -219,6 +219,23 @@ const DeleteById = async (req, res) => {
   }
 };
 
+
+//delte wrt name 
+const DeleteByNameData = async (req, res) => {
+  try {
+    const condition = { Name: "HACKED!!!!" };
+
+    const result = await BlogModel.deleteMany(condition);
+    res.send(`Deleted ${result.deletedCount} BlogData`);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .send({ status: false, msg: "server error", error: error.message });
+  }
+};
+
+
 module.exports = {
   BlogData,
   getData,
@@ -227,4 +244,5 @@ module.exports = {
   Deletedata,
   DeleteById,
   saveImage,
+  DeleteByNameData
 };
