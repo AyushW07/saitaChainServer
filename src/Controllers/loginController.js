@@ -1,6 +1,20 @@
 const loginModel = require("../Models/loginModel");
 const jwt = require("jsonwebtoken");
 
+const dotenv = require('dotenv').config();
+console.log("si", process.env.JWT_KEY)
+
+const createJWT = (user) => {
+  return jwt.sign(
+    {
+      id: user.id,
+      email: user.email,
+      role: "PALNESTO_ADMIN",
+    },
+    process.env.JWT_KEY
+
+  );
+};
 const createUser = async (req, res) => {
   try {
     let data = req.body;
@@ -18,7 +32,7 @@ const createUser = async (req, res) => {
     return res.status(201).send({
       status: true,
       message: "User created successfully",
-      data: newUser,
+
     });
   } catch (error) {
     return res.status(500).send({ status: false, message: error.message });
@@ -48,26 +62,15 @@ const userLogin = async (req, res) => {
       });
     }
 
-    // Assuming you are saving the plain text passwords (which you shouldn't, passwords should be hashed)
-    if (user.Password !== Password) {
-      return res.status(401).send({
-        status: false,
-        message: "Password is incorrect",
-      });
-    }
+    const userJwt = createJWT(user);
 
-    // Generate a token
-    let token = jwt.sign(
-      {
-        userId: user._id,
-      },
-      "chessBoard",
-      { expiresIn: "12hrs" }
-    );
+    // // Store it on session object
 
-    // Respond with token
-    res.setHeader("x-api-key", token);
-    return res.status(200).send({ status: "loggedin", token: token });
+    req.session = {
+      jwt: userJwt,
+    };
+
+    return res.status(200).send({ status: "loggedin" });
   } catch (err) {
     return res.status(500).send({ status: false, message: err.message });
   }
