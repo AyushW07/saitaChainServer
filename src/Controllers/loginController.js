@@ -2,7 +2,6 @@ const loginModel = require("../Models/loginModel");
 const jwt = require("jsonwebtoken");
 
 const dotenv = require('dotenv').config();
-console.log("si", process.env.JWT_KEY)
 
 const createJWT = (user) => {
   return jwt.sign(
