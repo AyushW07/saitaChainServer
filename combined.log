@@ -46,3 +46,4 @@
 {"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:20.612Z","url":"/checklogs"}
 {"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:20.828Z","url":"/checklogs"}
 {"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:21.037Z","url":"/checklogs"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T14:08:54.456Z"}
