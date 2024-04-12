@@ -1,0 +1,49 @@
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T12:30:02.618Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T12:30:53.709Z"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T12:31:11.933Z","url":"/checklog"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T12:31:48.812Z"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T12:50:34.847Z","url":"/read-logs"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T12:50:41.038Z","url":"/checklog"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T12:50:57.901Z","url":"/checklog"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T13:21:09.237Z"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:21:18.520Z","url":"/checklog"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:21:19.710Z","url":"/checklog"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:21:20.496Z","url":"/checklog"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:21:21.271Z","url":"/checklog"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T13:43:16.740Z"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:46:28.798Z","url":"/checklog"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T13:46:47.734Z"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:46:50.054Z","url":"/checklog"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:46:51.423Z","url":"/checklog"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:46:52.070Z","url":"/checklog"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T13:47:12.280Z"}
+{"level":"error","message":"MongoDB connection error logger.erroe is not a function","stack":"TypeError: logger.erroe is not a function\n    at E:\\saitaChainServer\\src\\index.js:54:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-04-12T13:47:21.145Z"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:47:26.555Z","url":"/checklog"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T13:47:36.277Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T13:48:46.330Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T13:52:40.676Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T13:54:22.385Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T13:58:07.392Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T13:59:31.186Z"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:59:43.825Z","url":"/checklog"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T13:59:45.932Z","url":"/checklog"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:00:28.445Z","url":"/checklogs"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:01:36.423Z","url":"/read-logs"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:01:45.257Z","url":"/checklogs"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T14:02:32.684Z"}
+{"body":{"Date":"20/12/23","Detail":"this is deat","MetaDescription":"This is deschhgfgsffdhgcns","MetaKey":"This is keyyyy","MetaTitle":"This is titlesa","Name":"Saitacsss","Photos":"url.png","Tag":"News","isDeleted":"false","slug":"this is slug"},"level":"info","message":"HTTP Request","method":"POST","params":{},"timestamp":"2024-04-12T14:03:05.600Z","url":"/V1/createBlogData"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T14:03:55.832Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T14:04:27.005Z"}
+{"body":{"Date":"20/12/23","Detail":"this is deat","MetaDescription":"This is deschhgfgsffdhgcns","MetaKey":"This is keyyyy","MetaTitle":"This is titlesa","Name":"Saitacsss","Photos":"url.png","Tag":"News","isDeleted":"false","slug":"this is slug"},"level":"info","message":"HTTP Request","method":"POST","params":{},"timestamp":"2024-04-12T14:04:29.571Z","url":"/V1/createBlogData"}
+{"body":{"Password":"Saita!@#chain098","userName":"admin1231"},"level":"info","message":"HTTP Request","method":"POST","params":{},"timestamp":"2024-04-12T14:04:48.796Z","url":"/V1/createUser"}
+{"body":{"Password":"Saita!@#chain098","userName":"admin1231"},"level":"info","message":"HTTP Request","method":"POST","params":{},"timestamp":"2024-04-12T14:04:54.611Z","url":"/V1/Loginuser"}
+{"body":{"Date":"20/12/23","Detail":"this is deat","MetaDescription":"This is deschhgfgsffdhgcns","MetaKey":"This is keyyyy","MetaTitle":"This is titlesa","Name":"Saitacsss","Photos":"url.png","Tag":"News","isDeleted":"false","slug":"this is slug"},"level":"info","message":"HTTP Request","method":"POST","params":{},"timestamp":"2024-04-12T14:04:59.980Z","url":"/V1/createBlogData"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:16.257Z","url":"/checklogs"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:17.718Z","url":"/checklogs"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:19.662Z","url":"/checklogs"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:20.187Z","url":"/checklogs"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:20.389Z","url":"/checklogs"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:20.612Z","url":"/checklogs"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:20.828Z","url":"/checklogs"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:21.037Z","url":"/checklogs"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T14:08:54.456Z"}
