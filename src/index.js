@@ -11,6 +11,7 @@ const { logRequest, logErrors, logger } = require('./middleware/loggerss');
 const cookieSession = require("cookie-session");
 app.use(multer().any());
 // Enable All CORS Requests for development use
+console.log("p") // testing
 app.use(
   cors({
     origin: [
