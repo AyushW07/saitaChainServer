@@ -18,7 +18,7 @@ const userhomeData = async (req, res) => {
 
         const mailOptions = {
             from: "noreply@saitachain.com",
-            to: "noreply@saitachain.com",
+            to: "info@saitachain.com",
             subject: "Submission for saitaChain.com",
             text: `
         Name: ${Name}
@@ -43,20 +43,11 @@ const userhomeData = async (req, res) => {
 
         console.log("Email sent");
 
-        // Since email was sent, now save/update the user home data
-        const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-        let query = {};
-        if (_id) {
-            query._id = _id;
-        }
-        const update = { Name, LastName, Email, ProjectName, Message, Interest };
-        const updatedData = await useformsModel.findOneAndUpdate(query, update, options);
-
-        // Now, safely send back a single response
-        return res.status(200).send({
+        const createData = await useformsModel.create({ Name, LastName, Email, ProjectName, Message, Interest });
+        return res.status(201).send({
             status: true,
-            msg: "Data created or updated successfully, and email sent",
-            data: updatedData,
+            msg: "Data created successfully, and email sent",
+            data: createData,
         });
     } catch (err) {
         console.error(err);

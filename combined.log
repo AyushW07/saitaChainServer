@@ -47,3 +47,5 @@
 {"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:20.828Z","url":"/checklogs"}
 {"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-12T14:05:21.037Z","url":"/checklogs"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-12T14:08:54.456Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-04-17T07:47:00.323Z"}
+{"body":{},"level":"info","message":"HTTP Request","method":"GET","params":{},"timestamp":"2024-04-17T07:50:20.876Z","url":"/ws"}
