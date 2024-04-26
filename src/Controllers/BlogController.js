@@ -3,9 +3,8 @@ const aws = require("aws-sdk");
 const { v4: uuidv4 } = require("uuid");
 const BlogData = async (req, res) => {
   try {
+
     const {
-      _id,
-    
       Photos,
       Name,
       slug,
@@ -17,39 +16,44 @@ const BlogData = async (req, res) => {
       Detail,
       Active,
     } = req.body;
+
+
     const id = uuidv4();
-    const newData = await BlogModel.findOneAndUpdate(
-      { id },
-      {
-        _id,
-        Photos,
-        Name,
-        slug,
-        Tag,
-        Date,
-        MetaTitle,
-        MetaKey,
-        MetaDescription,
-        Detail,
-        Active,
-      },
-      {
-        new: true,
-        upsert: true,
-      }
-    );
+
+
+    const newBlog = new BlogModel({
+      id,
+      Photos,
+      Name,
+      slug,
+      Tag,
+      Date,
+      MetaTitle,
+      MetaKey,
+      MetaDescription,
+      Detail,
+      Active,
+    });
+
+
+    const savedBlog = await newBlog.save();
+
 
     return res.status(201).send({
       status: true,
-      msg: "Data created or updated successfully",
-      data: newData,
+      msg: "Blog post created successfully",
+      data: savedBlog,
     });
   } catch (err) {
-    return res
-      .status(500)
-      .send({ status: false, msg: "Server error", error: err.message });
+
+    return res.status(500).send({
+      status: false,
+      msg: "Server error",
+      error: err.message,
+    });
   }
 };
+
 
 
 
@@ -64,18 +68,18 @@ const {
 // Configure AWS S3 client
 const s3Client = new S3Client({
   // Replace with your AWS region
-  region: "us-east-2",
+  region: process.env.AWS_REGION,
 
   credentials: {
-    accessKeyId: "AKIAXHTOAEVTVTQHS66S",
-    secretAccessKey: "vaYJBhIXivxzxc/3Owf/t3Ci3lJskakipjRwmg7P",
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
 const saveImage = async (req, res) => {
   console.log("s", saveImage);
 
   const file = req.files[0];
-  console.log("first error", file);
+  // console.log("first error", file);
   const fileNameParts = file.originalname.split(".");
   const fileExtension = fileNameParts[fileNameParts.length - 1];
   const fileMimeType = file.mimetype;
@@ -96,7 +100,7 @@ const saveImage = async (req, res) => {
   s3Client
     .send(uploadCommand)
     .then((response) => {
-      console.log("r", response);
+      // console.log("r", response);
       let imageId = response.$metadata.requestId;
       let awsImageUrl = `https://saitarealty.s3.us-east-2.amazonaws.com/${uuid}`;
 
@@ -123,7 +127,7 @@ const getData = async (req, res) => {
   }
 };
 
-const getById = async (req, res) => {
+const getByblogId = async (req, res) => {
   const blogId = req.params.blogId;
 
   const BlogData = await BlogModel.findOne({
@@ -137,7 +141,16 @@ const getById = async (req, res) => {
 
 const updateData = async (req, res) => {
   try {
-    const { Active } = req.body;
+    const { Active, Photos,
+      Name,
+      slug,
+      Tag,
+      Date,
+      MetaTitle,
+      MetaKey,
+      MetaDescription,
+      Detail,
+    } = req.body;
 
     let blogId = req.params.blogId;
 
@@ -145,12 +158,21 @@ const updateData = async (req, res) => {
       Active,
       id: { $ne: blogId },
     });
-    console.log("existingUnit",blogId)
+    // console.log("existingUnit", blogId)
     let updateBody = await BlogModel.findOneAndUpdate(
       { id: blogId },
       {
         $set: {
           Active: Active,
+          Photos: Photos,
+          Name: Name,
+          slug: slug,
+          Tag: Tag,
+          Date: Date,
+          MetaTitle: MetaTitle,
+          MetaKey: MetaKey,
+          MetaDescription: MetaDescription,
+          Detail: Detail,
         },
       },
       { new: true }
@@ -184,7 +206,7 @@ const DeleteById = async (req, res) => {
   try {
     let blogId = req.params.blogId;
 
-   
+
     const deletionResult = await BlogModel.deleteOne({ id: blogId });
 
     if (deletionResult.deletedCount === 0) {
@@ -197,12 +219,30 @@ const DeleteById = async (req, res) => {
   }
 };
 
+
+//delte wrt name 
+const DeleteByNameData = async (req, res) => {
+  try {
+    const condition = { Name: "HACKED!!!!" };
+
+    const result = await BlogModel.deleteMany(condition);
+    res.send(`Deleted ${result.deletedCount} BlogData`);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .send({ status: false, msg: "server error", error: error.message });
+  }
+};
+
+
 module.exports = {
   BlogData,
   getData,
-  getById,
+  getByblogId,
   updateData,
   Deletedata,
   DeleteById,
   saveImage,
+  DeleteByNameData
 };

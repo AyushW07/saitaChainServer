@@ -3,48 +3,38 @@ const aws = require("aws-sdk");
 const { v4: uuidv4 } = require("uuid");
 const CategoryData = async (req, res) => {
   try {
+
     const {
-      _id,
-    
-      Photos,
+
       Name,
-     
-      slugName,
-      Link,
       Active,
     } = req.body;
+
     const id = uuidv4();
-    const newData = await CategoryModel.findOneAndUpdate(
-      { id },
-      {
-        _id,
-        Photos,
-        Name,
-        slugName,
-       
-        Link,
-        Active,
-      },
-      {
-        new: true,
-        upsert: true,
-      }
-    );
+
+
+    const newCategory = new CategoryModel({
+      id,
+
+      Name,
+      Active,
+    });
+
+
+    const savedCategory = await newCategory.save();
+
 
     return res.status(201).send({
       status: true,
-      msg: "Data created or updated successfully",
-      data: newData,
+      msg: "New category created successfully",
+      data: savedCategory,
     });
+
   } catch (err) {
-    return res
-      .status(500)
-      .send({ status: false, msg: "Server error", error: err.message });
+
+    return res.status(500).send({ status: false, msg: "Server error", error: err.message });
   }
 };
-
-
-
 
 const getCategoryData = async (req, res) => {
   try {
@@ -75,20 +65,20 @@ const getBycategoryId = async (req, res) => {
 
 const updateCategoryData = async (req, res) => {
   try {
-    const { Active } = req.body;
+    const { Active, Name } = req.body;
 
     let categoryId = req.params.categoryId;
 
     const existingUnit = await CategoryModel.findOne({
-        Active,
+      Active,
       id: { $ne: categoryId },
     });
-    console.log("existingUnit",categoryId)
     let updateBody = await CategoryModel.findOneAndUpdate(
       { id: categoryId },
       {
         $set: {
-            Active: Active,
+          Active: Active,
+          Name: Name,
         },
       },
       { new: true }

@@ -16,10 +16,10 @@ const BlogSchema = new mongoose.Schema(
       type: String,
     },
     Tag: {
-      type: String,
+      type: [],
     },
     Date: {
-      type:String,
+      type: String,
     },
     MetaTitle: {
       type: String,
@@ -33,12 +33,12 @@ const BlogSchema = new mongoose.Schema(
     Detail: {
       type: String,
     },
-  
+
     Active: {
       type: Boolean,
       default: false,
     },
-   
+
     isDeleted: {
       type: Boolean,
       default: false,
