@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const storage = multer.memoryStorage(); // using memory storage for simplicity
 const upload = multer({ storage: storage });
-const { createUser, userLogin, getusersData } = require('../Controllers/loginController')
+const { userLogin, getusersData } = require('../Controllers/loginController')
 const {
   BlogData,
   getData,
@@ -45,14 +45,14 @@ const currentUser = require("../middleware/currentUser");
 const auth = require("../middleware/auth")
 //**********************************user*******************************//
 //login
-router.post("/V1/createUser", createUser);
+// router.post("/V1/createUser", createUser);
 router.post("/V1/Loginuser", userLogin);
 router.get("/V1/getuser", getusersData);
 
 //Blog//
 router.post("/V1/createBlogData", currentUser, auth(ClientRoles.PALNESTO_ADMIN), BlogData);
 router.post("/V1/uploadImg", saveImage);
-router.get("/V1/getBlogData", getData);
+router.get("/V1/getBlogData", currentUser, auth(ClientRoles.PALNESTO_ADMIN), getData);
 router.get("/V1/getByblogId/:blogId", getByblogId);
 router.put("/V1/updateBlogData/:blogId", currentUser, auth(ClientRoles.PALNESTO_ADMIN), updateData);
 router.delete("/V1/deleteBlogData", Deletedata);

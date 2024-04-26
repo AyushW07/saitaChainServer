@@ -68,11 +68,11 @@ const {
 // Configure AWS S3 client
 const s3Client = new S3Client({
   // Replace with your AWS region
-  region: "us-east-2",
+  region: process.env.AWS_REGION,
 
   credentials: {
-    accessKeyId: "AKIAXHTOAEVTVTQHS66S",
-    secretAccessKey: "vaYJBhIXivxzxc/3Owf/t3Ci3lJskakipjRwmg7P",
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
 const saveImage = async (req, res) => {

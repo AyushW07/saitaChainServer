@@ -5,8 +5,9 @@ const requireAuthorization = (roles) => {
 
     const checkAuthorization = (req, res, next) => {
 
-        if (req.hostname === 'saitachain.com' && (req.method === 'GET' || req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE')) {
-            return next();
+        if (req.hostname === 'saitachain.com' && (req.method === 'GET')) {
+            next();
+            return;
         }
         if (!req.currentUser) {
             return res.status(400).send("You must be logged in to view this resource.");
